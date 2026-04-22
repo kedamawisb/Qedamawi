@@ -74,6 +74,24 @@
                 .project-card {
                     background: #1a1a1a;
                     padding: 2.5rem;
+                    transition: background 0.3s;
+                    cursor: pointer;
+                    position: relative;
+                    overflow: hidden;
+                }
+                .project-card:hover {
+                    background: #222;
+                }
+                .project-card::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0; left: 0;
+                    width: 0; height: 3px;
+                    background: #c8401a;
+                    transition: width 0.3s;
+                }
+                .project-card:hover::after {
+                    width:100%;
                 }
                 .num {
                     color: #c8401a;
@@ -139,6 +157,60 @@
                     border-left:3px solid #c8401a;
                     padding-left: 1rem;
                 }
+                @keyframes fadeUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                #hero h1 {
+                    animation: fadeUp 0.8s ease forwards;
+                }
+                #hero p {
+                    animation: fadeUp 0.8s ease 0.2s forwards;
+                    opacity: 0;
+                }
+                nav {
+                    animation: fadeDown 0.6s ease forwards;
+                }
+                @keyframes fadeDown {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                footer {
+                    background: #c8401a;
+                    padding: 4rem 3rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .footer-name {
+                    font-family: 'Bebas Neue', sans-serif;
+                    font-size: 3rem;
+                    color:#f5f0e8;
+                }
+                .footer-links a {
+                    color: rgba(245,240,232,0.8);
+                    text-decoration: none;
+                    margin-left: 2rem;
+                    font-size: 0.85rem;
+                    letter-spacing: 0.15;
+                    text-transform: uppercase;
+                }
+                .footer-links a:hover {
+                    color: #f5f0e8;
+                }
         </style>
         
 
@@ -170,7 +242,8 @@
 </section>
 <section id="about">
     <h2>WHO I AM</h2>
-    <p>I'm Qedamawi (Kedamawi or ቀዳማዊ every so often) - a builder, creator, and thinker. My name means "the first" in Ge'ez and Amharic, and everything I do lives up to it.</p>
+    <p>I'm Qedamawi (Kedamawi or ቀዳማዊ every so often) - a builder, content creator, and thinker based in Washington, D.C. My name means "the first" in Ge'ez and Amharic, and I intend to live up to it. My hobbies range from watching and playing soccer, all the way to reading philosophical and theological books. I was born and raised in Addis Ababa, Ethiopia where I spent most of my life trying to make it big playing soccer in various academies from ages 11-17.
+    </p>
 </section>
 <section id="work">
     <h2>SELECTED PROJECTS</h2>
@@ -206,5 +279,23 @@
                 </div>
             </div>
         </section>
+        <footer>
+            <p class="footer-name">QEDAMAWI</p>
+            <div class="footer-links">
+                <a href="https://github.com/kedamawisb" target="_blank">GitHub</a>
+                <a href="https://twitter.com/@kedamawisb" target="_blank">Twitter</a>
+                <a href="https://youtube.com/@kedamawisb" target="_blank">YouTube</a>
+                <a href="https://instagram.com/kedamawisb" target="_blank">Instagram</a> 
+                <a href="https://tiktok.com/@kedamawisb" target="_blank">TikTok</a>
+            </div>
+        </footer>
+        <script>
+            document.querySelectorAll('a[href^="#"]').forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth'});
+                });
+            });
+        </script>
     </body>
 </html>
