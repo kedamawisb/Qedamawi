@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@1,700&family=Audiowide&display=swap" rel="stylesheet">
         <title>Qedamawi</title>
         <style>
             * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,16 +30,21 @@
                     gap: 4rem;
                 }
                 #hero h1 {
-                    font-family: 'Bebas Neue', sans-serif;
+                    font-family: 'Audiowide', cursive;
                     font-size: 8rem;
                     line-height: 0.9;
                     color: #f5f0e8;
                 }
                 #hero h1 span { color: #c8401a; }
-                #hero p {
+                .subtitle {
+                    font-family: 'Playfair Display', serif;
+                    font-style: italic;
+                    font-weight: 700;
                     font-size: 1.4rem;
                     color: rgba(245,240,230,0.6);
                     margin-top: 2rem;
+                    animation: fadeUp 0.8s ease 0.2s forwards;
+                    opacity: 0;
                 }
                 #about {
                     background: #f5f0e8;
@@ -211,13 +216,29 @@
                 .footer-links a:hover {
                     color: #f5f0e8;
                 }
+                .nav-logo {
+                    font-family: 'Audiowide', cursive;
+                    font-size: 1.5rem;
+                    color: #f5f0e8;
+                    text-decoration: none;
+                }
+                .project-tag {
+                    display: inline-block;
+                    border: 1px solid rgba(200,64,26,0.5);
+                    color: #c8401a;
+                    font-size: 0.7rem;
+                    letter-spacing: 0.2rem;
+                    text-transform: uppercase;
+                    padding: 0.25rem 0.75rem;
+                    margin-top: 1.5rem;
+                }
         </style>
         
 
     </head>
     <body>
 <nav>
-    <a href="#hero"Q.</a>
+    <a href="#hero" class="nav-logo">Q.</a>
         <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#work">Work</a></li>
@@ -227,7 +248,7 @@
 <section id="hero">
     <div>
     <h1>QEDAMAW<span>I</span></h1>
-    <p>The first of his name. Born to leave a mark.</p>
+    <p class="subtitle">The first of his name. Born to leave a mark.</p>
     </div>
     <div>
         <div style="border-left: 3px solid #c8401a; padding-left: 1rem; margin-bottom: 2rem;">
@@ -242,7 +263,7 @@
 </section>
 <section id="about">
     <h2>WHO I AM</h2>
-    <p>I'm Qedamawi (Kedamawi or ቀዳማዊ every so often) - a builder, content creator, and thinker based in Washington, D.C. My name means "the first" in Ge'ez and Amharic, and I intend to live up to it. My hobbies range from watching and playing soccer, all the way to reading philosophical and theological books. I was born and raised in Addis Ababa, Ethiopia where I spent most of my life trying to make it big playing soccer in various academies from ages 11-17.
+    <p>ሰላም! I'm Kedamawi (Qedamawi or ቀዳማዊ every so often) - a Chemistry student, freelance writer, and builder based in Washington, D.C. My name means "the first" in Ge'ez and Amharic, and I intend to live up to it. My hobbies range from watching and playing soccer, all the way to reading philosophical and theological books. I was born and raised in Addis Ababa, Ethiopia where I spent most of my life trying to make it big playing soccer in various academies from ages 11-17.
     </p>
 </section>
 <section id="work">
@@ -250,8 +271,9 @@
     <div class="projects-grid">
         <div class="project-card">
             <p class="num">001</p>
-            <h3>Project One</h3>
-            <p>Description of what you built and the impact it had.</p>
+            <h3>Helen</h3>
+            <p>I built Helen because existing AI assistants are toys. She's a true artificial intelligence - reasoning, learning, anticipating. Voice-activated, context-aware, and getting smarter every day. JARVIS was fiction. Helen is real. Want to see genius at work? The entire build process is documented on my channel.</p>
+            <p class="project-tag">AI</p>
         </div>
         <div class="project-card">
             <p class="num">002</p>
@@ -285,6 +307,7 @@
                 <a href="https://github.com/kedamawisb" target="_blank">GitHub</a>
                 <a href="https://twitter.com/@kedamawisb" target="_blank">Twitter</a>
                 <a href="https://youtube.com/@kedamawisb" target="_blank">YouTube</a>
+                <a href="https://discord.com/users/qedamawisb" target="_blank">Discord</a>
                 <a href="https://instagram.com/kedamawisb" target="_blank">Instagram</a> 
                 <a href="https://tiktok.com/@kedamawisb" target="_blank">TikTok</a>
             </div>
