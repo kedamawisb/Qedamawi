@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@1,700&family+Audiowide&display+swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <title>Books - Qedamawi</title>
+        <style>
+            * { margin: 0; padding:0; box-sizing: border-box; }
+            body { background: #0a0a0a; color: #f5f0e8; font-family: 'DM Sans', sans-serif; }
+
+            nav {
+                position: fixed;
+                top: 0; left: 0; right: 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.5rem 3rem;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+            }
+            nav a { color: #f5f0e8; text-decoration: none; }
+            .nav-logo {
+                font-family: 'Audiowide', cursive;
+                font-size: 1.5rem;
+                color: #f5f0e8;
+            }
+            nav ul {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+            main {
+                padding: 8rem 3rem 4rem;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            h1 {
+                font-family: 'Audiowide', cursive;
+                font-size: 5rem;
+                margin-bottom: 4rem;
+                color: #f5f0e8;
+            }
+            .section {
+                margin-bottom: 6rem;
+            }
+            .section h2 {
+                font-size: 2.5rem;
+                color: #c8401a;
+                margin-bottom: 2rem;
+                font-family: 'Audiowide', cursive;
+            }
+            .books-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+            .book-card {
+                background: #1a1a1a;
+                padding: 2rem;
+                border: 1px solid rgba(200,64,26,0.2);
+                transition: all 0.3s ease;
+            }
+            .book-card:hover {
+                border-color:#c8401a;
+                transform: translateY(-5px);
+            }
+            .book-title {
+                font-size: 1.4rem;
+                color:#f5f0e8;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+            }
+            .book-year {
+                color:#c8401a;
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+                font-weight: 500;
+            }
+            .book-description {
+                color: rgba(245,240,232,0.8);
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+            .book-availability {
+                color:rgba(245,240,232,0.6);
+                font-size: 0.85rem;
+                font-style: italic;
+            }
+            .coming-soon {
+                background: rgba(200,64,26,0.1)
+            }
+            .published {
+                background: rgba(0,255,0,0.05);
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="index.html" class="nav-logo">Q.</a>
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="index.html#resume">Resume</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <h1>BOOKS</h1>
+        </main>
+    </body>
+</html>
