@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@1,700&family+Audiowide&display+swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@1,700&family=Audiowide&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <title>Books - Qedamawi</title>
         <style>
@@ -19,6 +19,17 @@
                 background: rgba(10,10,10,0.95);
                 backdrop-filter: blur(10px);
                 z-index: 1000;
+                animation: fadeDown 0.6s ease forwards;
+            }
+            @keyframes fadeDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
             nav a { color: #f5f0e8; text-decoration: none; }
             .nav-logo {
@@ -36,11 +47,22 @@
                 max-width: 1200px;
                 margin: 0 auto;
             }
-            h1 {
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(0);
+                }
+            }
+            main h1 {
                 font-family: 'Audiowide', cursive;
                 font-size: 5rem;
+                line-height: 0.9;
                 margin-bottom: 4rem;
                 color: #f5f0e8;
+                font-weight: normal;
+                margin-bottom: 4rem;
+                text-transform: uppercase;
+                animation: fadeUp 0.8s ease forwards;
             }
             .section {
                 margin-bottom: 6rem;
@@ -50,6 +72,7 @@
                 color: #c8401a;
                 margin-bottom: 2rem;
                 font-family: 'Audiowide', cursive;
+                animation: fadeUp 0.8s ease forwards;
             }
             .books-grid {
                 display: grid;
@@ -61,6 +84,7 @@
                 padding: 2rem;
                 border: 1px solid rgba(200,64,26,0.2);
                 transition: all 0.3s ease;
+                animation: fadeUp 0.8s ease forwards;
             }
             .book-card:hover {
                 border-color:#c8401a;
