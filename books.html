@@ -118,6 +118,115 @@
             .published {
                 background: rgba(0,255,0,0.05);
             }
+            .mindmap-container {
+                position: relative;
+                min-height: 600px;
+                padding: 2rem;
+                display: flex;
+                flex-direction:column;
+                align-items: center;
+            }
+
+            .mindmap-node {
+                background:#1a1a1a;
+                border: 2px solid #c8401a;
+                padding: 1.5rem 2rem;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin: 1rem;
+            }
+
+            .mindmap-node:hover {
+                background: #2a2a2a;
+                border-color: #ffffff;
+                transform: scale(1.05);
+            }
+
+            .root-node {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+            }
+
+            .arrow {
+                position: absolute;
+                transition: opacity 0.3s ease;
+            }
+
+            .arrow-line {
+                width: 2px;
+                background:#c8401a;
+                margin: 0 auto;
+            }
+
+            .short-arrow .arrow-line {
+                height: 60px;
+            }
+            
+            .long-arrow .arrow-line {
+                height: 100px;
+            }
+
+            .arrow-head {
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-top: 15px solid #c8401a;
+                margin: 0 auto;
+            }
+
+            .authors-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                margin: 2rem 0;
+            }
+
+            .author-node {
+                background: rgba(200,64,26,0.1);
+                border: 1px solid rbga(200,64,26,0.3);
+                padding: 1rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-align: center;
+            }
+            
+            .author-node:hover {
+                background: rgba(200,64,26,0.2);
+                transform: translateY(-2px);
+            }
+
+            .author-node.pending {
+                background: rgba(245,240,232,0.05);
+                border: 1px dashed rgba(245,240,232,0.3);
+                cursor: default;
+            }
+
+            .books-display {
+                background: #1a1a1a;
+                padding: 2rem;
+                border-radius: 8px;
+                margin-top: 2rem;
+                max-width: 800px;
+            }
+
+            .hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .fade-in {
+                animation: fadeIn 0.5s ease forwards;
+            }
+
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                    pointer-events: auto;
+                }
+            }
         </style>
     </head>
     <body>
@@ -189,6 +298,83 @@
                         <p class="book-year">Future Publications</p>
                         <p class="book-description">Additional works in progress, continuing the tradition of thoughtful narrative and documentary storytelling.</p>
                         <p class="book-availability">Updates coming soon</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>My Favorite Books</h2>
+                <div class="mindmap-container">
+                    <!-- Root node -->
+                    <div class="mindmap-node root-node" id="favoriteBooks">
+                        <h3>FAVORITE BOOKS</h3>
+                    </div>
+
+                    <!--Arrows (hidden initially)-->
+                    <div class="arrow short-arrow hidden" id="shortArrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+
+                    <div class="arrow long-arrow hidden" id="longArrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+
+                    <div class="mindmap-node philosophical-node hidden" id="philosophicalBooks">
+                        <h4>Philosophical Books</h4>
+                    </div>
+
+                    <!--Religious Authors-->
+                    <div class="authors-grid religious-authors hidden" id="religiousAuthors">
+                        <div class="author-node" data-author="bible">
+                            <span>Holy Bible</span>
+                        </div>
+                        <div class="author-node" data-author="augustine">
+                            <span>St. Augustine</span>
+                        </div>
+                        <div class="author-node" data-author="athanasius">
+                            <span>St. Athanasius</span>
+                        </div>
+                        <div class="author-node" data-author="shenouda">
+                            <span>Pope Shenouda III</span>
+                        </div>
+                        <div class="author-node" data-author="paisios">
+                            <span>Saint Paisios</span>
+                        </div>
+                        <div class="author-node pending">
+                            <span>More Pending...</span>
+                        </div>
+
+                        <!--Philosophical Authors-->
+                        <div class="authors-grid philosophical-authors hidden" id="philosophicalAuthors">
+                            <div class="author-node" data-author="dostoevsky">
+                                <span>Dostoevsky</span>
+                            </div>
+                            <div class="author-node" data-author="aristotle">
+                                <span>Aristotle</span>
+                            </div>
+                            <div class="author-node" data-author="plato">
+                                <span>Plato</span>
+                            </div>
+                            <div class="author-node" data-author="seneca">
+                                <span>Seneca</span>
+                            </div>
+                            <div class="author-node" data-author="nietzsche">
+                                <span>Nietzsche</span>
+                            </div>
+                            <div class="author-node" data-author="galileo">
+                                <span>Galileo</span>
+                            </div>
+                            <div class="autho-node pending">
+                                <span>More Pending...</span>
+                            </div>
+                        </div>
+
+                        <!--Books Container-->
+                        <div class="books-display hidden" id="booksDisplay">
+                            <!--Individual book lists will be populated here-->
+                        </div>
                     </div>
                 </div>
             </div>
