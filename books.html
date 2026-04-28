@@ -379,5 +379,122 @@
                 </div>
             </div>
         </main>
+        <script>
+            //Mind map interaction functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const favoriteBooks = document.getElementById('favoriteBooks');
+                const shortArrow = document.getElementById('shortArrow');
+                const longArrow = document.getElementById('longArrow');
+                const religiousBooks = document.getElementById('religiousBooks');
+                const philosophicalBooks = document.getElementById('PhilosophicalBooks');
+                const religiousAuthors = document.getElementById('religiousAuthors');
+                const philosophicalAuthors = document.getElementById('philosophicalAuthors');
+                const booksDisplay = document.getElementById('booksDisplay');
+
+                //Book data
+                const bookData = {
+                    bible: {
+                        title: "Holy Bible",
+                        books: ["Genesis", "Psalms", "Proverbs", "Ecclesiastes", "John", "Romans", "1 Corinthians", "Philippians"]
+                    },
+                    augustine: {
+                        title: "St. Augustine",
+                        books: ["Confessions"]
+                    },
+                    athanasius: {
+                        title: "St. Athanasius",
+                        books: ["Against the Heathen (Orations Against the Arians)", "The Incarnation of the Word of God"]
+                    },
+                    shenouda: {
+                        title: "Pope Shenouda III",
+                        books: ["The Spirituality of Fasting", "Comparative Theology", "Words of Spiritual Benefit", "What is Man", "Ten Concepts", "The Nature of Christ", "Characteristics of the Spiritual Path"]
+                    },
+                    paisios: {
+                        title: "Saint Paisios",
+                        books: ["Spiritual Counsels", "Elder Paisios of Mount Athos", "With Pain and Love for Contemporary Man"]
+                    },
+                    dostoevsky: {
+                        title: "Fyodor Dostoevsky",
+                        books: ["The Idiot", "Crime and Punishment", "The Brothers Karamazov"]
+                    },
+                    aristotle: {
+                        title: "Aristotle",
+                        books: ["Nicomachean Ethics", "Metaphysics"]
+                    },
+                    plato: {
+                        title: "Plato",
+                        books: ["The Republic", "The Last Days of Socrates"]
+                    },
+                    seneca: {
+                        title: "Seneca",
+                        books: ["Letters from a Stoic"]
+                    },
+                    nietzsche: {
+                        title: "Friedrich Nietzsche",
+                        books: ["Beyond Good and Evil"]
+                    },
+                    galileo: {
+                        title: "Galileo Galilei",
+                        books: ["Dialogue Concerning the Two Chief World Systems", "The Assayer"]
+                    }
+                };
+
+                //CLick on root node shows arrows
+                favoriteBooks.addEventListener('click', function() {
+                    shortArrow.classList.remove('hidden');
+                    longArrow.classList.remove('hidden');
+                    shortArrow.classList.add('fade-in');
+                    longArrow.classList.add('fade-in');
+
+                    setTimeout(() => {
+                        religiousBooks.classList.remove('hidden');
+                        philosophicalBooks.classList.remove('hidden');
+                        religiousBooks.classList.add('fade-in');
+                        philosophicalBooks.classList.add('fade-in');
+                    }, 300);
+                });
+
+                //Click on religious books shows religious authors
+                religiousBooks.addEventListener('click', function() {
+                    hideAllAuthors();
+                    religiousAuthors.classList.remove('hidden');
+                    religiousAuthors.classList.add('fade-in');
+                });
+
+                //Click on philosophical books shows philosophical authors
+                philosophicalBooks.addEventListener('click', function() {
+                    hideAllAuthors();
+                    philosophicalAuthors.classList.remove('hidden');
+                    philosophicalAuthors.classList.add('fade-in');
+                });
+
+                //Click on author shows their books
+                document.querySelectorAll('.author-node[data-author]'). forEach(node => {
+                    node.addEventListener('click', function() {
+                        const author = this.dataset.author;
+                        if (bookData[author]) {
+                            showBooks(bookData[author]);
+                        }
+                    });
+                });
+                
+                function hideAllAuthors() {
+                    religiousAuthors.classList.add('hidden');
+                    philosophicalAuthors.classList.add('hidden');
+                    booksDisplay.classList.add('hidden');
+                }
+
+                function showBooks(authorData) {
+                    booksDisplay.innerHTML = `
+                        <h3>${authorData.title}</h3>
+                        <ul style="list-style: none; padding: 0;">
+                               ${authorData.books.map(book => `<li style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(200,64,26,0.1); border-radius: 4px;">${book}</li>`).join('')}
+                        </ul>
+                    `;
+                    booksDisplay.classList.remove('hidden');
+                    booksDisplay.classList.add('fade-in');    
+                }
+            });
+        </script>
     </body>
 </html>
