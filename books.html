@@ -185,12 +185,16 @@
 
             .author-node {
                 background: rgba(200,64,26,0.1);
-                border: 1px solid rbga(200,64,26,0.3);
+                border: 1px solid rgba(200,64,26,0.3);
                 padding: 1rem;
                 border-radius: 6px;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 60px;
             }
             
             .author-node:hover {
@@ -213,8 +217,7 @@
             }
 
             .hidden {
-                opacity: 0;
-                pointer-events: none;
+                display: none !important;
             }
 
             .fade-in {
@@ -222,10 +225,79 @@
             }
 
             @keyframes fadeIn {
-                to {
-                    opacity: 1;
-                    pointer-events: auto;
-                }
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            .mindmap-node.category-node {
+                font-size: 1rem;
+                padding: 1rem 1.5rem;
+                background: rgba(200,64,26,0.15);
+            }
+
+            .categories-row {
+                display: flex;
+                gap: 3rem;
+                justify-content: center;
+                margin: 0.5rem 0 1.5rem;
+            }
+
+            .svg-arrows {
+                width: 100%;
+                height: 100px;
+                overflow: visible;
+            }
+
+            .arrow-path {
+                fill: none;
+                stroke:#c8401a;
+                stroke-width: 2;
+                stroke-dasharray: 200;
+                stroke-dashoffset: 200;
+            }
+
+            .arrow-path.animate {
+                animation: drawArrow 0.8s ease fowards;
+            }
+
+            @keyframes drawArrow {
+                to { stroke-dashoffset: 0;}
+            }
+
+            .books-display {
+                background: #1a1a1a;
+                padding: 2rem;
+                border-radius: 8px;
+                margin-top: 1.5rem;
+                width: 100%;
+                max-width: 800px;
+                border: 1px solid rgba(200,64,26,0.3);
+            }
+
+            .books-display h3 {
+                font-family: 'Audiowide', cursive;
+                color: #c8401a;
+                margin-bottom: 1.2rem;
+                font-size: 1.1rem;
+            }
+
+            .book-list-item {
+                margin: 0.5rem 0;
+                padding: 0.6rem 1rem;
+                background: rgba(200,64,26,0.08);
+                border-radius: 4px;
+                border-left: 2px solid rgba(200,64,26,0.4);
+                color: #f5f0e8;
+                transition: background 0.2s;
+            }
+
+            .book-list-item:hover {
+                background: rgba(200,64,26,0.18);
+            }
+
+            .author-node.active {
+                background: rgba(200,64,26,0.3);
+                border-color: #c8401a;
             }
         </style>
     </head>
@@ -305,97 +377,79 @@
             <div class="section">
                 <h2>My Favorite Books</h2>
                 <div class="mindmap-container">
+
                     <!-- Root node -->
                     <div class="mindmap-node root-node" id="favoriteBooks">
-                        <h3>FAVORITE BOOKS</h3>
+                        <h3>📚 FAVORITE BOOKS</h3>
                     </div>
 
-                    <!--Arrows (hidden initially)-->
-                    <div class="arrow short-arrow hidden" id="shortArrow">
-                        <div class="arrow-line"></div>
-                        <div class="arrow-head"></div>
+                    <svg class="svg-arrows hidden" id="connectorLines" viewBox="0 0 600 100">
+                        <!--Left curvy arrow to Spiritual Books-->
+                        <path id="leftArrow" class="arrow-path" d="M 300 0 C 300 40, 150 40, 150 90"/>
+                        <polygon id="leftHead" points="150,90 144,75 156, 75" fill="#c8401a" opacity="0"/>
+
+                        <!--Right curvy to Philosophical Books-->
+                        <path id="rightArrow" class="arrow-path" d="M 300 0 C 300 40, 450 40, 450 90"/>
+                        <polygon id="rightHead" points="450,0 444, 75 456, 75" fill="#c8401a" opacity="0"/>
+                    </svg>    
+
+                    <!-- Category nodes (hidden initially) -->
+                    <div class="categories-row hidden" id="categoriesRow">
+                        <div class="mindmap-node category-node" id="religiousBooks">
+                            <h4>📖 Spiritual Books</h4>
+                        </div>
+                        <div class="mindmap-node category-node" id="philosophicalBooks">
+                            <h4>📜 Philosophical Books</h4>
+                        </div>
                     </div>
 
-                    <div class="arrow long-arrow hidden" id="longArrow">
-                        <div class="arrow-line"></div>
-                        <div class="arrow-head"></div>
+                    <!-- Religious Authors (hidden initially) -->
+                    <div class="authors-grid hidden" id="religiousAuthors">
+                        <div class="author-node" data-author="bible"><span>☦️ Holy Scriptures</span></div>
+                        <div class="author-node" data-author="augustine"><span>St. Augustine</span></div>
+                        <div class="author-node" data-author="athanasius"><span>St. Athanasius</span></div>
+                        <div class="author-node" data-author="shenouda"><span>Pope Shenouda III</span></div>
+                        <div class="author-node" data-author="paisios"><span>Saint Paisios</span></div>
+                        <div class="author-node pending"><span>More Pending...</span></div>
                     </div>
 
-                    <div class="mindmap-node philosophical-node hidden" id="philosophicalBooks">
-                        <h4>Philosophical Books</h4>
+                    <!-- Philosophical Authors (hidden initially) -->
+                    <div class="authors-grid hidden" id="philosophicalAuthors">
+                        <div class="author-node" data-author="dostoevsky"><span>Dostoevsky</span></div>
+                        <div class="author-node" data-author="aristotle"><span>Aristotle</span></div>
+                        <div class="author-node" data-author="plato"><span>Plato</span></div>
+                        <div class="author-node" data-author="seneca"><span>Seneca</span></div>
+                        <div class="author-node" data-author="nietzsche"><span>Nietzsche</span></div>
+                        <div class="author-node" data-author="galileo"><span>Galileo</span></div>
+                        <div class="author-node pending"><span>More Pending...</span></div>
                     </div>
 
-                    <!--Religious Authors-->
-                    <div class="authors-grid religious-authors hidden" id="religiousAuthors">
-                        <div class="author-node" data-author="bible">
-                            <span>Holy Bible</span>
-                        </div>
-                        <div class="author-node" data-author="augustine">
-                            <span>St. Augustine</span>
-                        </div>
-                        <div class="author-node" data-author="athanasius">
-                            <span>St. Athanasius</span>
-                        </div>
-                        <div class="author-node" data-author="shenouda">
-                            <span>Pope Shenouda III</span>
-                        </div>
-                        <div class="author-node" data-author="paisios">
-                            <span>Saint Paisios</span>
-                        </div>
-                        <div class="author-node pending">
-                            <span>More Pending...</span>
-                        </div>
-
-                        <!--Philosophical Authors-->
-                        <div class="authors-grid philosophical-authors hidden" id="philosophicalAuthors">
-                            <div class="author-node" data-author="dostoevsky">
-                                <span>Dostoevsky</span>
-                            </div>
-                            <div class="author-node" data-author="aristotle">
-                                <span>Aristotle</span>
-                            </div>
-                            <div class="author-node" data-author="plato">
-                                <span>Plato</span>
-                            </div>
-                            <div class="author-node" data-author="seneca">
-                                <span>Seneca</span>
-                            </div>
-                            <div class="author-node" data-author="nietzsche">
-                                <span>Nietzsche</span>
-                            </div>
-                            <div class="author-node" data-author="galileo">
-                                <span>Galileo</span>
-                            </div>
-                            <div class="autho-node pending">
-                                <span>More Pending...</span>
-                            </div>
-                        </div>
-
-                        <!--Books Container-->
-                        <div class="books-display hidden" id="booksDisplay">
-                            <!--Individual book lists will be populated here-->
-                        </div>
+                    <!-- Books Display (hidden initially) -->
+                    <div class="books-display hidden" id="booksDisplay">
+                        <!-- Populated by JS -->
                     </div>
+
                 </div>
             </div>
         </main>
         <script>
-            //Mind map interaction functionality
             document.addEventListener('DOMContentLoaded', function() {
-                const favoriteBooks = document.getElementById('favoriteBooks');
-                const shortArrow = document.getElementById('shortArrow');
-                const longArrow = document.getElementById('longArrow');
-                const religiousBooks = document.getElementById('religiousBooks');
-                const philosophicalBooks = document.getElementById('PhilosophicalBooks');
-                const religiousAuthors = document.getElementById('religiousAuthors');
-                const philosophicalAuthors = document.getElementById('philosophicalAuthors');
-                const booksDisplay = document.getElementById('booksDisplay');
 
-                //Book data
+                // Element references
+                const favoriteBooks    = document.getElementById('favoriteBooks');
+                const connectorLines   = document.getElementById('connectorLines');
+                const categoriesRow    = document.getElementById('categoriesRow');
+                const religiousBooks   = document.getElementById('religiousBooks');
+                const philosophicalBooks = document.getElementById('philosophicalBooks');
+                const religiousAuthors   = document.getElementById('religiousAuthors');
+                const philosophicalAuthors = document.getElementById('philosophicalAuthors');
+                const booksDisplay     = document.getElementById('booksDisplay');
+
+                // Book data
                 const bookData = {
                     bible: {
-                        title: "Holy Bible",
-                        books: ["Genesis", "Psalms", "Proverbs", "Ecclesiastes", "John", "Romans", "1 Corinthians", "Philippians"]
+                        title: "📖 Holy Scriptures",
+                        books: ["Genesis", "Psalms", "Isaiah", "Romans", "John", "Revelations", "1 Corinthians", "Philippians"]
                     },
                     augustine: {
                         title: "St. Augustine",
@@ -403,11 +457,11 @@
                     },
                     athanasius: {
                         title: "St. Athanasius",
-                        books: ["Against the Heathen (Orations Against the Arians)", "The Incarnation of the Word of God"]
+                        books: ["Against the Heathen", "The Incarnation of the Word of God"]
                     },
                     shenouda: {
                         title: "Pope Shenouda III",
-                        books: ["The Spirituality of Fasting", "Comparative Theology", "Words of Spiritual Benefit", "What is Man", "Ten Concepts", "The Nature of Christ", "Characteristics of the Spiritual Path"]
+                        books: ["The Spirituality of Fasting", "Comparative Theology", "Words of Spiritual Benefit", "What is Man", "The Nature of Christ", "Characteristics of the Spiritual Path", "Ten Concepts"]
                     },
                     paisios: {
                         title: "Saint Paisios",
@@ -439,61 +493,88 @@
                     }
                 };
 
-                //CLick on root node shows arrows
+                // Helper: show an element with fade animation
+                function show(el) {
+                    el.classList.remove('hidden');
+                    el.classList.remove('fade-in');
+                    void el.offsetWidth; // reflow to restart animation
+                    el.classList.add('fade-in');
+                }
+
+                // Helper: hide an element
+                function hide(el) {
+                    el.classList.add('hidden');
+                    el.classList.remove('fade-in');
+                }
+
+                // Track state
+                let categoriesVisible = false;
+
+                // Click root → toggle categories
                 favoriteBooks.addEventListener('click', function() {
-                    shortArrow.classList.remove('hidden');
-                    longArrow.classList.remove('hidden');
-                    shortArrow.classList.add('fade-in');
-                    longArrow.classList.add('fade-in');
-
-                    setTimeout(() => {
-                        religiousBooks.classList.remove('hidden');
-                        philosophicalBooks.classList.remove('hidden');
-                        religiousBooks.classList.add('fade-in');
-                        philosophicalBooks.classList.add('fade-in');
-                    }, 300);
+                    if (!categoriesVisible) {
+                        show(connectorLines);
+                        show(categoriesRow);
+                        categoriesVisible = true;
+                        // Reset deeper levels
+                        hide(religiousAuthors);
+                        hide(philosophicalAuthors);
+                        hide(booksDisplay);
+                        clearActiveAuthors();
+                    } else {
+                        hide(connectorLines);
+                        hide(categoriesRow);
+                        hide(religiousAuthors);
+                        hide(philosophicalAuthors);
+                        hide(booksDisplay);
+                        clearActiveAuthors();
+                        categoriesVisible = false;
+                    }
                 });
 
-                //Click on religious books shows religious authors
+                // Click Religious Books → show religious authors
                 religiousBooks.addEventListener('click', function() {
-                    hideAllAuthors();
-                    religiousAuthors.classList.remove('hidden');
-                    religiousAuthors.classList.add('fade-in');
+                    hide(philosophicalAuthors);
+                    hide(booksDisplay);
+                    clearActiveAuthors();
+                    show(religiousAuthors);
                 });
 
-                //Click on philosophical books shows philosophical authors
+                // Click Philosophical Books → show philosophical authors
                 philosophicalBooks.addEventListener('click', function() {
-                    hideAllAuthors();
-                    philosophicalAuthors.classList.remove('hidden');
-                    philosophicalAuthors.classList.add('fade-in');
+                    hide(religiousAuthors);
+                    hide(booksDisplay);
+                    clearActiveAuthors();
+                    show(philosophicalAuthors);
                 });
 
-                //Click on author shows their books
-                document.querySelectorAll('.author-node[data-author]'). forEach(node => {
+                // Click an author → show their books
+                document.querySelectorAll('.author-node[data-author]').forEach(function(node) {
                     node.addEventListener('click', function() {
                         const author = this.dataset.author;
                         if (bookData[author]) {
+                            clearActiveAuthors();
+                            this.classList.add('active');
                             showBooks(bookData[author]);
                         }
                     });
                 });
-                
-                function hideAllAuthors() {
-                    religiousAuthors.classList.add('hidden');
-                    philosophicalAuthors.classList.add('hidden');
-                    booksDisplay.classList.add('hidden');
+
+                function clearActiveAuthors() {
+                    document.querySelectorAll('.author-node.active').forEach(function(n) {
+                        n.classList.remove('active');
+                    });
                 }
 
                 function showBooks(authorData) {
-                    booksDisplay.innerHTML = `
-                        <h3>${authorData.title}</h3>
-                        <ul style="list-style: none; padding: 0;">
-                               ${authorData.books.map(book => `<li style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(200,64,26,0.1); border-radius: 4px;">${book}</li>`).join('')}
-                        </ul>
-                    `;
-                    booksDisplay.classList.remove('hidden');
-                    booksDisplay.classList.add('fade-in');    
+                    const items = authorData.books.map(function(book) {
+                        return '<div class="book-list-item">' + book + '</div>';
+                    }).join('');
+
+                    booksDisplay.innerHTML = '<h3>' + authorData.title + '</h3>' + items;
+                    show(booksDisplay);
                 }
+
             });
         </script>
     </body>
