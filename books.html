@@ -513,23 +513,39 @@
                 // Click root → toggle categories
                 favoriteBooks.addEventListener('click', function() {
                     if (!categoriesVisible) {
-                        show(connectorLines);
-                        show(categoriesRow);
-                        categoriesVisible = true;
-                        // Reset deeper levels
-                        hide(religiousAuthors);
-                        hide(philosophicalAuthors);
-                        hide(booksDisplay);
-                        clearActiveAuthors();
-                    } else {
-                        hide(connectorLines);
-                        hide(categoriesRow);
-                        hide(religiousAuthors);
-                        hide(philosophicalAuthors);
-                        hide(booksDisplay);
-                        clearActiveAuthors();
-                        categoriesVisible = false;
+                    const svg = document.getElementById('connectorLines');
+                    svg.classList.remove('hidden');
+
+                //Trigger arrow draw animation
+                document.getElementById('leftArrow').classList.add('animate');
+                document.getElementById('rightArrow').classList.add('animate');
+
+                //Show arrowheads after path finishes
+                setTimeout(function() {
+                    document.getElementById('leftHead').style.opacity = '1';
+                    document.getElementById('rightHead').style.opacity = '1';
+                }, 800);
+                show(categoriesRow);
+                categoriesVisible = true;
+                hide(religiousAuthors);
+                hide(philosophicalAuthors);
+                hide(booksDisplay);
+                clearActiveAuthors();
+            } else {
+                hide(connectorLines);
+                //Reset animations for nect time
+                document.getElementById('leftArrow').classList.remove('animate');
+                document.getElementById('rightArrow').classList.remove('animate');
+                document.getElementById('leftHead').style.opacity = '0';
+                document.getElementById('rightHead').style.opacity = '0';
+                hide(categoriesRow);
+                hide(religiousAuthors);
+                hide(philosophicalAuthors);
+                hide(booksDisplay);
+                clearActiveAuthors();
+                categoriesVisible = false;
                     }
+            
                 });
 
                 // Click Religious Books → show religious authors
