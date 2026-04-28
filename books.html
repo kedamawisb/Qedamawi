@@ -243,21 +243,23 @@
             }
 
             .svg-arrows {
-                width: 100%;
-                height: 100px;
+                width: 600px;
+                height: 120px;
                 overflow: visible;
+                display: block;
+                margin: 0 auto;
             }
 
             .arrow-path {
                 fill: none;
                 stroke:#c8401a;
                 stroke-width: 2;
-                stroke-dasharray: 200;
-                stroke-dashoffset: 200;
+                stroke-dasharray: 400;
+                stroke-dashoffset: 400;
             }
 
             .arrow-path.animate {
-                animation: drawArrow 0.8s ease fowards;
+                animation: drawArrow 0.8s ease forwards;
             }
 
             @keyframes drawArrow {
@@ -332,12 +334,27 @@
                         <p class="book-availability">Available on Amazon</p>
                     </div>
 
-                    <div class="book-card coming-soon">
-                        <h3 class="book-title">Loneliness</h3>
-                        <p class="book-year">Mid 2028</p>
-                        <p class="book-description">A philosophical examination of solitude, isolation, and the human condition. Exploring loneliness not as emptiness, but as a profound space for self-discorvery and growth.</p>
+                    <div class="book-card comming-soon">
+                        <h3 class="boo-title">Delusional Optimism</h3>
+                        <p class="book-year">Early 2028</p>
+                        <p class="book-description">Description coming soon.</p>
                         <p class="book-availability">Available on Amazon</p>
                     </div>
+
+                     <div class="book-card coming-soon">
+                        <h3 class="book-title">Loneliness</h3>
+                        <p class="book-year">Mid 2028</p>
+                        <p class="book-description">A philosophical novel of solitude, isolation, and the human condition. Exploring loneliness not as emptiness, but as a profound space for self-discorvery and growth.</p>
+                        <p class="book-availability">Available on Amazon</p>
+                    </div>
+
+                    <div class="book-card coming-soon">
+                        <h3 class="book-title">The Contrarian</h3>
+                        <p class="book-year">Late 2028</p>
+                        <p class="book-description">Description coming soon.</p>
+                        <p class="book-availability">Available on Amazon</p>
+                    </div>
+
                 </div>
             </div>
 
@@ -383,14 +400,13 @@
                         <h3>📚 FAVORITE BOOKS</h3>
                     </div>
 
-                    <svg class="svg-arrows hidden" id="connectorLines" viewBox="0 0 600 100">
+                    <svg class="svg-arrows hidden" id="connectorLines" viewBox="0 0 600 130" preserveAspectRatio="xMidYMid meet">
                         <!--Left curvy arrow to Spiritual Books-->
-                        <path id="leftArrow" class="arrow-path" d="M 300 0 C 300 40, 150 40, 150 90"/>
-                        <polygon id="leftHead" points="150,90 144,75 156, 75" fill="#c8401a" opacity="0"/>
-
+                        <path id="leftArrow" class="arrow-path" d="M 300 10 C 300 60, 160 60, 160 110"/>
+                        <polygon id="leftHead" points="160,115 153,100 167, 100" fill="#c8401a" opacity="0"/>
                         <!--Right curvy to Philosophical Books-->
-                        <path id="rightArrow" class="arrow-path" d="M 300 0 C 300 40, 450 40, 450 90"/>
-                        <polygon id="rightHead" points="450,0 444, 75 456, 75" fill="#c8401a" opacity="0"/>
+                        <path id="rightArrow" class="arrow-path" d="M 300 10 C 300 60, 440 60, 440 110"/>
+                        <polygon id="rightHead" points="440,115 433,100 447, 100" fill="#c8401a" opacity="0"/>
                     </svg>    
 
                     <!-- Category nodes (hidden initially) -->
@@ -590,7 +606,6 @@
                     booksDisplay.innerHTML = '<h3>' + authorData.title + '</h3>' + items;
                     show(booksDisplay);
                 }
-
             });
         </script>
     </body>
