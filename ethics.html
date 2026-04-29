@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@1,700&family=Audiowide&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <title>Ethics - Qedamawi</title>
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { background: #0a0a0a; color: #f5f0e8; font-family: 'DM Sans', sans-serif; }
+
+            nav {
+                position: fixed;
+                top: 0; left: 0; right: 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.5rem 3rem;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                animation: fadeDown 0.6s ease forwards;
+            }
+            @keyframes fadeDown {
+                from { opacity: 0; transform: translateY(-30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            nav a { color: #f5f0e8; text-decoration: none; }
+            .nav-logo {
+                font-family: 'Audiowide', cursive;
+                font-size: 1.5rem;
+            }
+            nav ul {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+            main {
+                padding: 8rem 3rem 8rem;
+                max-width: 680px;
+                margin: 0 auto;
+            }
+            @keyframes fadeUp {
+                from { opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .back-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: #c8401a;
+                text-decoration: none;
+                font-size: 0.85rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                margin-bottom: 3rem;
+                animation: fadeUp 0.6s ease forwards;
+                opacity: 0;
+                transition: color 0.3s, letter-spacing 0.3s;
+            }
+            .back-link:hover {
+                color: #ffffff;
+                letter-spacing: 0.2rem;
+                gap: 0.8rem;
+            }
+            .essay-meta {
+                margin-bottom: 3rem;
+                animation: fadeUp 0.6s ease 0.1s forwards;
+                opacity: 0;
+            }
+            .essay-date {
+                color: rgba(245,240,232,0.4);
+                font-size: 0.85rem;
+                letter-spacing: 0.1em;
+                margin-bottom: 1rem;
+            }
+            h1 {
+                font-family: 'Audiowide', cursive;
+                font-size: 3.5rem;
+                line-height: 1;
+                color: #f5f0e8;
+                font-weight: normal;
+            }
+            .essay-content {
+                animation: fadeUp 0.6s ease 0.2s forwards;
+                opacity: 0;
+            }
+            .essay-content p {
+                font-size: 1.05rem;
+                line-height: 1.9;
+                color: rgba(245,240,232,0.85);
+                margin-bottom: 1.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="index.html" class="nav-logo">Q.</a>
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#work">Works</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="essays.html">Essays</a></li>
+                <li><a href="index.html#resume">Resume</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <a href="essays.html" class="back-link">← Back to Essays</a>
+
+            <div class="essay-meta">
+                <p class="essay-date">10-07-2024</p>
+                <h1>Ethics</h1>
+            </div>
+
+            <div class="essay-content">
+                <p>Your essay goes here.</p>
+            </div>
+        </main>
+    </body>
+</html>
