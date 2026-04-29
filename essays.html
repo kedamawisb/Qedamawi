@@ -93,16 +93,21 @@
                 font-size: 0.85rem;
                 letter-spacing: 0.1rem;
             }
-            .essay-toggle {
-                color:#c8401a;
-                font-size: 1.2rem;
-                transition: transform 0.3s ease;
-                margin-left: 1.5rem;
+            .essay-item {
+                border-bottom: 1px solid rgba(200,64,26,0.2);
+                padding: 2rem 0;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-decoration: none;
             }
-            .essay-body {
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s ease;
+            .essay-item:hover {
+                border-bottom-color: #c8401a;
+            }
+            .essay-item:hover .essay-title {
+                color: #c8401a;
             }
             .essay-body p {
                 padding-top: 1.5rem;
@@ -131,131 +136,47 @@
 
             <div class="essays-list">
 
-                <div class="essay-item">
-                    <div class="essay-header">
+                <a href="sonder.html" class="essay-item">
                         <span class="essay-title">Sonder</span>
-                        <div style="display:flex; align-items:center; gap:1rem;">
-                            <span class="essay-date">03-12-2024</span>
-                            <span class="essay-toggle">+</span>
-                        </div>
-                    </div>
-                    <div class="essay-body">
-                        <p>Essay coming soon.</p>
-                    </div>
-                </div>
+                        <span class="essay-date">03-12-2024</span>
+                 </a>   
 
-                <div class="essay-item">
-                    <div class="essay-header">
+                <a href="main-character-syndrome.html" class="essay-item">
                         <span class="essay-title">Main Character Syndrome</span>
-                        <div style="display:flex; align-items:center; gap:1rem;">
-                            <span class="essay-date">06-03-2024</span>
-                            <span class="essay-toggle">+</span>
-                        </div>
-                    </div>
-                    <div class="essay-body">
-                        <p>Essay coming soon.</p>
-                    </div>
-                </div>
+                        <span class="essay-date">06-03-2024</span>
+                </a>
 
-                <div class="essay-item">
-                    <div class="essay-header">
+                <a href="self-love According to God.html" class="essay-item">
                         <span class="essay-title">Self-love According to God</span>
-                        <div style="display:flex; align-items:center; gap:1rem; ">
-                            <span class="essay-date">08-19-2024</span>
-                            <span class="essay-toggle">+</span>
-                        </div>
-                    </div>
-                    <div class="essay-body">
-                        <p>Essay coming soon.</p>
-                    </div>
-                </div>
+                        <span class="essay-date">08-19-2024</span>
+                </a>            
 
-                <div class="essay-item">
-                    <div class="essay-header">
+                <a href="ethics.html" class="essay-item">
                         <span class="essay-title">Ethics</span>
-                        <div style="display:flex; align-items: center; gap:1rem; ">
-                            <span class="essay-date">10-07-2024</span>
-                            <span class="essay-toggle">+</span>
-                        </div>
-                    </div>
-                    <div class="essay-body">
-                        <p>Essay coming soon.</p>
-                    </div>
-                </div>
+                        <span class="essay-date">10-07-2024</span>
+                </a>
 
-                <div class="essay-item">
-                    <div class="essay-header">
+                <a href="racism.html" class="essay-item">
                         <span class="essay-title">Racism</span>
-                        <div style="display:flex; align-items: center; gap:1rem;">
-                            <span class="essay-date">01-15-2025</span>
-                            <span class="essay-toggle">+</span>
-                        </div>
-                    </div>
-                    <div class="essay-body">
-                        <p>Essay coming soon.</p>
-                    </div>
-                </div>
+                        <span class="essay-date">01-15-2025</span>
+                </a>
 
-                <div class="essay-item">
-                    <div class="essay-header">
+                <a href="money.html" class="essay-item">
                         <span class="essay-title">Money</span>
-                        <div style="display:flex; align-items: center; gap:1rem;">
-                            <span class="essay-date">02-28-2025</span>
-                            <span class="essay-toggle">+</span>
-                        </div>
-                    </div>
-                    <div class="essay-body">
-                        <p>Essay coming soon.</p>
-                    </div>
-                </div>
+                        <span class="essay-date">02-28-2025</span>
+                </a>
                 
-                <div class="essay-item">
-                    <div class="essay-header">
+                <a href="dignity.html" class="essay-item">
                         <span class="essay-title">Dignity</span>
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <span class="essay-date">04-04-2025</span>
-                            <span class="essay-toggle">+</span>
-                        </div>
-                    </div>
-                    <div class="essay-body">
-                        <p>Essay coming soon.</p>
-                    </div>
-                </div>
+                        <span class="essay-date">04-04-2025</span>       
+                </a>
 
-                <div class="essay-item">
-                    <div class="essay-header">
+                <a href="purpose.html" class="essay-item">
                         <span class="essay-title">Purpose</span>
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <span class="essay-date">04-21-2025</span>
-                            <span class="essay-toggle">+</span>
-                        </div>
-                    </div>
-                    <div class="essay-body">
-                        <p>Essay coming soon.</p>
-                    </div>
-                </div>
+                        <span class="essay-date">04-21-2025</span>
+                </a>
 
             </div>
         </main>
-
-        <script>
-            document.querySelectorAll('.essay-item').forEach(function(item) {
-                item.addEventListener('click', function() {
-                    const body = this.querySelector('.essay-body');
-                    const toggle = this.querySelector('.essay-toggle');
-                    const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
-
-                    if (isOpen) {
-                        body.style.maxHeight = '0px';
-                        toggle.textContent = '+';
-                        toggle.style.transform = 'rotate(0deg)';
-                    } else {
-                        body.style.maxHeight = body.scrollHeight + 'px';
-                        toggle.textContent = '-';
-                        toggle.style.transform = 'rotate(180deg)';
-                    }
-                });
-            });
-        </script>
     </body>
 </html>
