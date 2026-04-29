@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@1,700&family=Audiowide&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <title>Essays - Qedamawi</title>
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { background: #0a0a0a; color: #f5f0e8; font-family: 'DM Sans', sans-serif; }
+
+            nav {
+                position: fixed;
+                top: 0; left: 0; right: 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.5rem 3rem;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                animation: fadeDown 0.6s ease forwards;
+            }
+            @keyframes fadeDown {
+                from {opacity: 0; transform: translateY(-30px); }
+                to {opacity: 1; transform: translateY(0); }
+            }
+            nav a { color:#f5f0e8; text-decoration: none; }
+            .nav-logo {
+                font-family: 'Audiowide', cursive;
+                font-size: 1.5rem;
+                color: #f5f0e8;
+            }
+            nav ul {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+            main {
+                padding: 8rem 3rem 4rem;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            @keyframes fadeUp {
+                from {opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            main h1 {
+                font-family: 'Audiowide', cursive;
+                font-size: 5rem;
+                line-height: 0.9;
+                color: #f5f0e8;
+                font-weight: normal;
+                text-transform: uppercase;
+                animation: fadeUp 0.8s ease forwards;
+                margin-bottom: 1.5rem;
+            }
+            .essays-description {
+                color: rgba(245,240,232,0.6);
+                font-size: 1rem;
+                line-height: 1.7;
+                margin-bottom: 4rem;
+                max-width: 600px;
+                animation: fadeUp 0.8s ease 0.2s forwards;
+                opacity: 0;
+            }
+            .essay-item {
+                border-bottom: 1px solid rgba(200,64,26,0.2);
+                padding: 2rem 0;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                animation: fadeUp 0.8s ease forwards;
+            }
+            .essay-item:hover {
+                border-bottom-color:#c8401a;
+            }
+            .essay-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .essay-title {
+                font-size: 1.4rem;
+                color:#f5f0e8;
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+            .essay-item:hover .essay-title {
+                color:#c8401a;
+            }
+            .essay-date {
+                color: rgba(245,240,232,0.4);
+                font-size: 0.85rem;
+                letter-spacing: 0.1rem;
+            }
+            .essay-toggle {
+                color:#c8401a;
+                font-size: 1.2rem;
+                transition: transform 0.3s ease;
+                margin-left: 1.5rem;
+            }
+            .essay-body {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+            }
+            .essay-body p {
+                padding-top: 1.5rem;
+                color: rgba(245,240,232,0.75);
+                line-height: 1.9;
+                font-size: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="index.html" class="nav-logo">Q.</a>
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#work">Works</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="essays.html">Essays</a></li>
+                <li><a href="index.html#resume">Resume</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <h1>ESSAYS</h1>
+            <p class="essays-description">My essays are structured in a way that people could get free insights from different perspective.</p>
+
+            <div class="essays-list">
+
+                <div class="essay-item">
+                    <div class="essay-header">
+                        <span class="essay-title">Sonder</span>
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <span class="essay-date">03-12-2024</span>
+                            <span class="essay-toggle">+</span>
+                        </div>
+                    </div>
+                    <div class="essay-body">
+                        <p>Essay coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="essay-item">
+                    <div class="essay-header">
+                        <span class="essay-title">Main Character Syndrome</span>
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <span class="essay-date">06-03-2024</span>
+                            <span class="essay-toggle">+</span>
+                        </div>
+                    </div>
+                    <div class="essay-body">
+                        <p>Essay coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="essay-item">
+                    <div class="essay-header">
+                        <span class="essay-title">Self-love According to God</span>
+                        <div style="display:flex; align-items:center; gap:1rem; ">
+                            <span class="essay-date">08-19-2024</span>
+                            <span class="essay-toggle">+</span>
+                        </div>
+                    </div>
+                    <div class="essay-body">
+                        <p>Essay coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="essay-item">
+                    <div class="essay-header">
+                        <span class="essay-title">Ethics</span>
+                        <div style="display:flex; align-items: center; gap:1rem; ">
+                            <span class="essay-date">10-07-2024</span>
+                        </div>
+                    </div>
+                    <div class="essay-body">
+                        <p>Essay coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="essay-item">
+                    <div class="essay-header">
+                        <span class="essay-title">Racism</span>
+                        <div style="display:flex; align-items: center; gap:1rem;">
+                            <span class="essay-date">01-15-2025</span>
+                            <span class="essay-toggle">+</span>
+                        </div>
+                    </div>
+                    <div class="essay-body">
+                        <p>Essay coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="essay-item">
+                    <div class="essay-header">
+                        <span class="essay-title">Money</span>
+                        <div style="display:flex; align-items: center; gap:1rem;">
+                            <span class="essay-date">02-28-2025</span>
+                            <span class="essay-toggle">+</span>
+                        </div>
+                    </div>
+                    <div class="essay-body">
+                        <p>Essay coming soon.</p>
+                    </div>
+                </div>
+                
+                <div class="essay-item">
+                    <div class="essay-header">
+                        <span class="essay-title">Dignity</span>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span class="essay-date">04-04-2025</span>
+                            <span class="essay-toggle">+</span>
+                        </div>
+                    </div>
+                    <div class="essay-body">
+                        <p>Essay coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="essay-items">
+                    <div class="essay-header">
+                        <span class="essay-title">Purpose</span>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span class="essay-date">04-21-2025</span>
+                            <span class="essay-toggle">+</span>
+                        </div>
+                    </div>
+                    <div class="essay-body">
+                        <p>Essay coming soon.</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <script>
+            document.querySelectorAll('.essay-item').forEach(function(item) {
+                item.addEventListener('click', function() {
+                    const body = this.querySelector('.essay-body');
+                    const toggle = this.querySelector('.essay-toggle');
+                    const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+
+                    if (isOpen) {
+                        body.style.maxHeight = '0px';
+                        toggle.textContent = '+';
+                        toggle.style.transform = 'rotate(0deg)';
+                    } else {
+                        body.style.maxHeight = body.scrollHeight + 'px';
+                        toggle.textContent = '-';
+                        toggle.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
