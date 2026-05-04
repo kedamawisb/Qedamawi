@@ -23,12 +23,13 @@
                 list-style: none;
             }
                 #hero {
-                    min-height: 100vh;
-                    padding: 8rem 3rem;
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
+                    position: relative;
+                    width: 100%;
+                    height: 100vh;
+                    overflow: hidden;
+                    display: flex;
                     align-items: center;
-                    gap: 4rem;
+                    justify-content: center;
                 }
                 #hero h1 {
                     font-family: 'Audiowide', cursive;
@@ -59,8 +60,36 @@
                     position: relative;
                 }
                 .hero-content {
-                    position: relative;
-                    z-index: 1;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 2;
+                    text-align: center;
+                    width: 100%;
+                    padding: 0;
+                    margin: 0;
+                    pointer-events: none;
+                }
+                .stats-row {
+                    display: flex;
+                    gap: 3rem;
+                    margin-top: 3rem;
+                    justify-content: center;
+                }
+                .stat-block {
+                    border-left: 3px solid #c8401a;
+                    padding-left: 1rem;
+                    height: 70px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+                .stat-num {
+                    font-family: 'Bebas Neue', sans-serif;
+                    font-size: 3.5rem;
+                    color: #f5f0e8;
+                    line-height: 1;
                 }
                 #about {
                     background: #f5f0e8;
@@ -358,20 +387,21 @@
         </ul>
 </nav>
 <section id="hero">
-    <div>
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
     <h1>QEDAMAW<span>I</span></h1>
     <p class="subtitle">The first of his name. Born to leave a mark.</p>
+    <div class="stats-row">
+        <div class="stat-block">
+    <p class="stat-num">03+</p>
+    <p class="stat-label">Years of experience</p>
     </div>
-    <div>
-        <div style="border-left: 3px solid #c8401a; padding-left: 1rem; margin-bottom: 2rem;">
-        <p pclass="stat-num" style="font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: #f5f0e8;">03+</p>
-        <p class="stat-label">Years of experience</p>
+    <div class="stat-block">
+    <p class="stat-num">20+</p>
+    <p class="stat-label">Projects completed</p>
+       </div>
     </div>
-    <div style="border-left: 3px solid #c8401a; padding-left: 1rem;">
-        <p class="stat-num" style="font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: #f5f0e8;">20+</p>
-        <p class="stat-label">Projects completed</p>
-        </div>
-    </div>
+</div>
 </section>
 <section id="about">
     <h2>WHO I AM</h2>
@@ -511,6 +541,84 @@
             });
         });
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script>
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true, antialias: true });
+
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+camera.position.z = 5;
+
+const shapes = [];
+const mouse = { x: 0, y: 0 };
+
+const materials = [
+    new THREE.MeshStandardMaterial({ color: 0xc8401a, wireframe: true, opacity: 0.9, transparent: true }),
+    new THREE.MeshStandardMaterial({ color: 0xf5f0e8, wireframe: true, opacity: 0.7, transparent: true }),
+    new THREE.MeshStandardMaterial({ color: 0x8b2d12, wireframe: true, opacity: 0.9, transparent: true })
+];
+
+const geometries = [
+    new THREE.IcosahedronGeometry(0.6, 0),
+    new THREE.OctahedronGeometry(0.6, 0)
+];
+
+for (let i = 0; i < 20; i++) {
+    const geo = geometries[Math.floor(Math.random() * geometries.length)];
+    const mat = materials[Math.floor(Math.random() * materials.length)];
+    const mesh = new THREE.Mesh(geo, mat);
+
+    mesh.position.set(
+        (Math.random() - 0.5) * 20,
+        (Math.random() - 0.5) * 12,
+        (Math.random() - 0.5) * 8
+    );
+    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+
+    mesh.userData.rotSpeed = {
+        x: (Math.random() - 0.5) * 0.02,
+        y: (Math.random() - 0.5) * 0.02
+    };
+
+    scene.add(mesh);
+    shapes.push(mesh);
+}
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+scene.add(ambientLight);
+const pointLight = new THREE.PointLight(0xc8401a, 4, 30);
+pointLight.position.set(3, 3, 3);
+scene.add(pointLight);
+
+document.addEventListener('mousemove', function(e) {
+    mouse.x = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouse.y = -(e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+window.addEventListener('resize', function() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    shapes.forEach(function(mesh) {
+        mesh.rotation.x += mesh.userData.rotSpeed.x;
+        mesh.rotation.y += mesh.userData.rotSpeed.y;
+    });
+
+    camera.position.x += (mouse.x * 0.8 - camera.position.x) * 0.05;
+    camera.position.y += (mouse.y * 0.5 - camera.position.y) * 0.05;
+    camera.lookAt(scene.position);
+
+    renderer.render(scene, camera);
+}
+
+animate();
+</script>
     </body>
 </html>
