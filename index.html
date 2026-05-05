@@ -15,6 +15,7 @@
                 justify-content: space-between;
                 align-items: center;
                 padding: 1.5rem 3rem;
+                z-index: 1000;
             }
             nav a { color: #f5f0e8; text-decoration: none; }
             nav ul {
@@ -74,12 +75,13 @@
                     opacity: 0;
                 }
                 #hero-canvas {
-                    position: relative;
+                    position: absolute;
                     top: 0;
                     left: 0;
                     width: 100%;
                     height: 100%;
                     z-index: 0;
+                    pointer-events: none;
                 }
                 #hero {
                     position: relative;
@@ -94,6 +96,7 @@
                     width: 100%;
                     animation: zoomOut 1s ease 2.5s forwards;
                     transform-origin: center center;
+                    pointer-events: auto;
                 }
                 @keyframes zoomOut {
                     from {
@@ -900,6 +903,7 @@ animate();
             screen.classList.add('fade-out');
             setTimeout(function() {
                 screen.style.display = 'none';
+                screen.style.pointerEvents = 'none';
             }, 800);
             return;
         }
