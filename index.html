@@ -110,79 +110,118 @@
                     gap: 3rem;
                     margin-top: 3rem;
                     justify-content: center;
+                    align-items: flex-start;
+                }
+                .stat-label {
+                    color: rgba(245,240,232,0.4);
+                    font-size: 0.75rem;
+                    letter-spacing: 0.15em;
+                    text-transform: uppercase;
+                    margin: 0;
+                    padding: 0;
                 }
                 .stat-block {
-                    border-left: 3px solid #c8401a;
                     padding-left: 1rem;
-                    height: 70px;
-                    display: flex;
+                    display: inline-flex;
                     flex-direction: column;
-                    justify-content: center;
+                    align-self: flex-start;
+                    position: relative;
                 }
-                .stat-num {
-                    font-family: 'Bebas Neue', sans-serif;
-                    font-size: 3.5rem;
-                    color: #f5f0e8;
-                    line-height: 1;
+                .stat-block::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 3px;
+                    height: 70px;
+                    background: #c8401a;
+                }
+                .stat-clip {
+                    overflow: hidden;
+                }
+
+                .stat-clip .stat-num {
+                    transform: translateY(100%);
+                    opacity: 0;
+                    animation: curtainReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 3.5s forwards;
+                }
+
+                .stat-clip .stat-label {
+                    transform: translateY(100%);
+                    opacity: 0;
+                    animation: curtainReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 3.8s forwards;
+                }
+
+                .stat-block:nth-child(2) .stat-clip .stat-num {
+                    animation-delay: 4.1s;
+                }
+
+                .stat-block:nth-child(2) .stat-clip .stat-label {
+                    animation-delay: 4.4s;
+                }
+
+                @keyframes curtainReveal {
+                  from { transform: translateY(100%); opacity: 0; }
+                  to { transform: translateY(0); opacity: 1; }
                 }
                 #loading-screen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: #0a0a0a;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
+                    position: fixed;
+                    top: 0; left: 0;
+                    width: 100%; height: 100%;
+                    background: #0a0a0a;
+                    z-index: 9999;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                }
 
-#loading-screen.fade-out {
-    animation: screenFadeOut 0.8s ease forwards;
-}
+                #loading-screen.fade-out {
+                    animation: screenFadeOut 0.8s ease forwards;
+                }
 
-@keyframes screenFadeOut {
-    to { opacity: 0; pointer-events: none; }
-}
+                @keyframes screenFadeOut {
+                    to { opacity: 0; pointer-events: none; }
+                }
 
-#circuit-canvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-}
+                 #circuit-canvas {
+                   position: absolute;
+                   top: 0; left: 0;
+                   width: 100%; height: 100%;
+                }
 
-.loading-title {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    font-family: 'Audiowide', cursive;
-    font-size: clamp(2rem, 12vw, 10rem);
-    color: transparent;
-    letter-spacing: 0.05em;
-    display: flex;
-    white-space: nowrap;
-}
+                .loading-title {
+                   position: fixed;
+                   top: 50%;
+                   left: 50%;
+                   transform: translate(-50%, -50%);
+                   z-index: 2;
+                   font-family: 'Audiowide', cursive;
+                   font-size: clamp(2rem, 12vw, 10rem);
+                   color: transparent;
+                   letter-spacing: 0.05em;
+                   display: flex;
+                   white-space: nowrap;
+                 }
 
-.loading-letter {
-    opacity: 0;
-    color: #f5f0e8;
-    text-shadow:
-        0 0 20px rgba(200,64,26,1),
-        0 0 40px rgba(200,64,26,0.8),
-        0 0 80px rgba(200,64,26,0.5);
-    animation: letterAppear 0.1s ease forwards;
-}
+                .loading-letter {
+                   opacity: 0;
+                   color: #f5f0e8;
+                   text-shadow:
+                   0 0 20px rgba(200,64,26,1),
+                   0 0 40px rgba(200,64,26,0.8),
+                   0 0 80px rgba(200,64,26,0.5);
+                   animation: letterAppear 0.1s ease forwards;
+                 }
 
-.loading-letter.red {
-    color: #c8401a;
-}
+                .loading-letter.red {
+                   color: #c8401a;
+                 }
 
-@keyframes letterAppear {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+                @keyframes letterAppear {
+                   from { opacity: 0; transform: translateY(-20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
                 #about {
                     background: #f5f0e8;
                     color: #0a0a0a;
@@ -463,6 +502,17 @@
                     70% { transform: scale(0.9) rotate(-2deg); }
                     100% { transform: scale(1) rotate(0deg); opacity: 1; }
                 }
+                .section-reveal {
+                    opacity: 0;
+                    transform: translateY(60px) translateZ(-50px);
+                    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    perspective: 1000px;
+                }
+
+                .section-reveal.visible {
+                   opacity: 1;
+                   transform: translateY(0) translateZ(0);
+                }
         </style>
         
 
@@ -497,14 +547,17 @@
     <h1>QEDAMAW<span>I</span></h1>
     <p class="subtitle">The first of his name. Born to leave a mark.</p>
     <div class="stats-row">
-        <div class="stat-block">
-    <p class="stat-num">03+</p>
-    <p class="stat-label">Years of experience</p>
+    <div class="stat-block">
+        <div class="stat-clip">
+            <p class="stat-num">03+</p>
+            <p class="stat-label">Years of experience</p>
+        </div>
     </div>
     <div class="stat-block">
-    <p class="stat-num">20+</p>
-    <p class="stat-label">Projects completed</p>
-       </div>
+        <div class="stat-clip">
+            <p class="stat-num">20+</p>
+            <p class="stat-label">Projects completed</p>
+        </div>
     </div>
 </div>
 </section>
@@ -666,13 +719,16 @@ const materials = [
     new THREE.MeshStandardMaterial({ color: 0x8b2d12, wireframe: true, opacity: 0.9, transparent: true })
 ];
 
-const geometries = [
-    new THREE.IcosahedronGeometry(0.6, 0),
-    new THREE.OctahedronGeometry(0.6, 0)
-];
+function randomGeometry() {
+    const sizes = [0.3, 0.5, 0.6, 0.8, 1.0, 1.3];
+    const size = sizes[Math.floor(Math.random() * sizes.length)];
+    return Math.random() > 0.5
+    ? new THREE.IcosahedronGeometry(size, 0)
+    : new THREE.OctahedronGeometry(size, 0);
+}
 
 for (let i = 0; i < 20; i++) {
-    const geo = geometries[Math.floor(Math.random() * geometries.length)];
+    const geo = randomGeometry();
     const mat = materials[Math.floor(Math.random() * materials.length)];
     const mesh = new THREE.Mesh(geo, mat);
 
@@ -685,7 +741,7 @@ for (let i = 0; i < 20; i++) {
 
     mesh.userData.rotSpeed = {
         x: (Math.random() - 0.5) * 0.02,
-        y: (Math.random() - 0.5) * 0.02
+        y: (Math.random() - 0.5) * 0.02 
     };
 
     scene.add(mesh);
@@ -701,6 +757,24 @@ scene.add(pointLight);
 document.addEventListener('mousemove', function(e) {
     mouse.x = (e.clientX / window.innerWidth - 0.5) * 2;
     mouse.y = -(e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+window.addEventListener('scroll', function() {
+    const scrollY = window.scrollY;
+    const maxScroll = window.innerHeight;
+    const scrollFraction = Math.min(scrollY / maxScroll, 1);
+    
+    // Pull camera back and fade shapes as user scrolls
+    camera.position.z = 5 + scrollFraction * 10;
+    
+    // Fade out shapes
+    shapes.forEach(function(mesh) {
+        mesh.material.opacity = Math.max(0, 1 - scrollFraction * 2);
+        mesh.material.transparent = true;
+    });
+
+    // Fade out circuit lines
+    lineMaterial.opacity = Math.max(0, 0.15 - scrollFraction * 0.3);
 });
 
 window.addEventListener('resize', function() {
@@ -753,7 +827,7 @@ function animate() {
         points.push(start, mid1, mid2, end);
         cl.line.geometry.setFromPoints(points);
     });
-    
+
     camera.position.x += (mouse.x * 0.8 - camera.position.x) * 0.05;
     camera.position.y += (mouse.y * 0.5 - camera.position.y) * 0.05;
     camera.lookAt(scene.position);
@@ -874,6 +948,18 @@ animate();
 
     animate();
 })();
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('#about, #work, #faq, #resume').forEach(function(section) {
+    section.classList.add('section-reveal');
+    observer.observe(section);
+});
 </script>
     </body>
 </html>
