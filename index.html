@@ -516,6 +516,122 @@
                    opacity: 1;
                    transform: translateY(0) translateZ(0);
                 }
+                #about {
+    position: relative;
+    background: #0a0a0a;
+    color: #0a0a0a;
+    padding: 0;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#about-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.about-content {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.about-content h2 {
+    font-family: 'Audiowide', cursive;
+    font-size: 3.5rem;
+    color: #f5f0e8;
+    margin-bottom: 2rem;
+}
+
+.about-content p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.85);
+    margin-bottom: 1.5rem;
+}
+
+/* Film strips */
+.film-strip {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    overflow: hidden;
+    background: #111;
+    padding: 8px 0;
+    border-top: 3px solid #222;
+    border-bottom: 3px solid #222;
+}
+
+.film-track {
+    display: flex;
+    gap: 8px;
+    animation: filmScroll 20s linear infinite;
+    width: max-content;
+}
+
+.film-track-reverse {
+    animation: filmScrollReverse 25s linear infinite;
+}
+
+.film-frame {
+    width: 160px;
+    height: 110px;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 2px;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.film-frame::before,
+.film-frame::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 12px,
+        #0a0a0a 12px,
+        #0a0a0a 18px
+    );
+}
+
+.film-frame::before { top: 0; }
+.film-frame::after { bottom: 0; }
+
+.film-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%) contrast(1.1);
+}
+
+.film-frame.empty {
+    background: #111;
+}
+
+@keyframes filmScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes filmScrollReverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
         </style>
         
 
@@ -565,10 +681,69 @@
 </div>
 </section>
 <section id="about">
-    <h2>WHO I AM</h2>
-    <p>ሰላም! I'm <span class="highlight">Kedamawi</span> (Qedamawi or ቀዳማዊ every so often) - a Chemistry student, author, and builder based in Washington, D.C. My name means <span class="highlight">the first</span> in Ge'ez and Amharic, and I intend to live up to it. My hobbies range from watching and playing soccer, all the way to reading philosophical and theological books. I was born and raised in <span class="highlight">Addis Ababa</span>, <span class="highlight">Ethiopia</span> where I spent most of my life trying to make it big playing soccer in various academies from ages 11-17.
-    </p>
-    <p>My faith as an <span class="highlight">Oriental Orthodox Christian</span> shapes my morals, my views, and quite literally everything I build. That said — <span class="highlight">I love to debate</span>. I like approaching ideas by bracketing my own biases and presuppositions in order to grasp a better understanding of the subject. I am a strong believer of <span class="highlight">epistemic humility</span>.
+    <!-- Film strip top -->
+    <div class="film-strip film-strip-top">
+        <div class="film-track">
+            <div class="film-frame">
+                <img src="photo1.jpg" alt="Kedamawi">
+            </div>
+            <div class="film-frame empty"></div>
+            <div class="film-frame">
+                <img src="photo2.jpg" alt="Kedamawi">
+            </div>
+            <div class="film-frame empty"></div>
+            <div class="film-frame">
+                <img src="photo3.jpg" alt="Kedamawi">
+            </div>
+            <div class="film-frame empty"></div>
+            <!-- Duplicates for infinite scroll -->
+            <div class="film-frame">
+                <img src="photo1.jpg" alt="Kedamawi">
+            </div>
+            <div class="film-frame empty"></div>
+            <div class="film-frame">
+                <img src="photo2.jpg" alt="Kedamawi">
+            </div>
+            <div class="film-frame empty"></div>
+        </div>
+    </div>
+
+    <!-- Particle canvas -->
+    <canvas id="about-canvas"></canvas>
+
+    <!-- Content -->
+    <div class="about-content">
+        <h2>WHO I AM</h2>
+        <p>ሰላም! I'm <span class="highlight">Kedamawi</span> (Qedamawi or ቀዳማዊ every so often) - a Chemistry student, author, and builder based in Washington, D.C. My name means <span class="highlight">the first</span> in Ge'ez and Amharic, and I intend to live up to it. My hobbies range from watching and playing soccer, all the way to reading philosophical and theological books. I was born and raised in <span class="highlight">Addis Ababa</span>, <span class="highlight">Ethiopia</span> where I spent most of my life trying to make it big playing soccer in various academies from ages 11-17.</p>
+        <p>My faith as an <span class="highlight">Oriental Orthodox Christian</span> shapes my morals, my views, and quite literally everything I build. That said — <span class="highlight">I love to debate</span>. I like approaching ideas by bracketing my own biases and presuppositions in order to grasp a better understanding of the subject. I am a strong believer of <span class="highlight">epistemic humility</span>.</p>
+    </div>
+
+    <!-- Film strip bottom -->
+    <div class="film-strip film-strip-bottom">
+        <div class="film-track film-track-reverse">
+            <div class="film-frame empty"></div>
+            <div class="film-frame">
+                <img src="photo3.jpg" alt="Kedamawi">
+            </div>
+            <div class="film-frame empty"></div>
+            <div class="film-frame">
+                <img src="photo1.jpg" alt="Kedamawi">
+            </div>
+            <div class="film-frame empty"></div>
+            <div class="film-frame">
+                <img src="photo2.jpg" alt="Kedamawi">
+            </div>
+            <div class="film-frame empty"></div>
+            <!-- Duplicates -->
+            <div class="film-frame">
+                <img src="photo3.jpg" alt="Kedamawi">
+            </div>
+            <div class="film-frame empty"></div>
+            <div class="film-frame">
+                <img src="photo1.jpg" alt="Kedamawi">
+            </div>
+        </div>
+    </div>
 </section>
 <section id="work">
     <h2>PROJECTS</h2>
@@ -964,6 +1139,99 @@ document.querySelectorAll('#about, #work, #faq, #resume').forEach(function(secti
     section.classList.add('section-reveal');
     observer.observe(section);
 });
+// About section particles
+(function() {
+    const canvas = document.getElementById('about-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const particles = [];
+    const count = 80;
+
+    // Particle types: dot, atom ring, page corner
+    for (let i = 0; i < count; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 2 + 0.5,
+            speedX: (Math.random() - 0.5) * 0.3,
+            speedY: (Math.random() - 0.5) * 0.3,
+            opacity: Math.random() * 0.4 + 0.1,
+            type: Math.floor(Math.random() * 3)
+        });
+    }
+
+    function drawAtom(ctx, x, y, size, opacity) {
+        ctx.save();
+        ctx.globalAlpha = opacity;
+        ctx.strokeStyle = '#c8401a';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.arc(x, y, size * 3, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(x, y, size * 6, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fillStyle = '#c8401a';
+        ctx.fill();
+        ctx.restore();
+    }
+
+    function drawPage(ctx, x, y, size, opacity) {
+        ctx.save();
+        ctx.globalAlpha = opacity * 0.3;
+        ctx.strokeStyle = 'rgba(245,240,232,0.6)';
+        ctx.lineWidth = 0.5;
+        ctx.strokeRect(x, y, size * 8, size * 10);
+        ctx.beginPath();
+        ctx.moveTo(x + 2, y + size * 3);
+        ctx.lineTo(x + size * 6, y + size * 3);
+        ctx.moveTo(x + 2, y + size * 5);
+        ctx.lineTo(x + size * 6, y + size * 5);
+        ctx.moveTo(x + 2, y + size * 7);
+        ctx.lineTo(x + size * 4, y + size * 7);
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(function(p) {
+            p.x += p.speedX;
+            p.y += p.speedY;
+
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height;
+            if (p.y > canvas.height) p.y = 0;
+
+            if (p.type === 0) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(200,64,26,' + p.opacity + ')';
+                ctx.fill();
+            } else if (p.type === 1) {
+                drawAtom(ctx, p.x, p.y, p.size, p.opacity);
+            } else {
+                drawPage(ctx, p.x, p.y, p.size, p.opacity);
+            }
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+})();
 </script>
     </body>
 </html>
